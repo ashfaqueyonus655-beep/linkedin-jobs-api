@@ -16,12 +16,21 @@ app.get("/search", async (req, res) => {
       time: days
     });
 
-    res.json({ success: true, count: results.length, results });
+    res.json({
+      success: true,
+      count: results.length,
+      jobs: results
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: error.toString() });
+    console.error("API Error:", error);
+    res.status(500).json({
+      success: false,
+      message: error.toString()
+    });
   }
 });
 
 const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => console.log("API running on port", PORT));
+app.listen(PORT, () => {
+  console.log(`API running on port ${PORT}`);
+});
