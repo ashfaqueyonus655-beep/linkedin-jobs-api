@@ -1,7 +1,7 @@
 // server.js
 // LinkedIn job wrapper tailored for: service desk / help desk / MSP
 // Filters for remote and contract roles; supports HTML (cheerio) fallback and optional job-detail fetch.
-// Usage: GET /search?keyword=service%20desk&location=United%20States&days=7&limit=50&start=0&require_remote=true&require_contract=true&fetch_details=false
+// Usage: GET /search?keyword=service%20desk&location=United%20States&days=7&limit=100&start=0&require_remote=true&require_contract=true&fetch_details=false
 
 const express = require('express');
 const axios = require('axios');
@@ -145,7 +145,7 @@ app.get('/search', async (req, res) => {
       keyword: (rq.keyword || rq.keywords || rq.q || 'service desk').toString().trim(),
       location: normalizeLocation(rq.location || rq.loc || 'United States'),
       days: toIntSafe(rq.days, 7),
-      limit: Math.min(Math.max(toIntSafe(rq.limit, 50), 1), 200),
+      limit: Math.min(Math.max(toIntSafe(rq.limit, 100), 1), 200),
       start: Math.max(toIntSafe(rq.start, 0), 0),
       requireRemote: String(rq.require_remote || rq.requireRemote || 'false').toLowerCase() === 'true',
       requireContract: String(rq.require_contract || rq.requireContract || 'false').toLowerCase() === 'true',
