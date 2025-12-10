@@ -1,9 +1,11 @@
 {
   "name": "linkedin-jobs-api",
   "version": "1.0.7",
+  "type": "module",
   "description": "advanced node.js package for getting job listings from LinkedIn",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "node test.js"
   },
   "repository": {
@@ -27,6 +29,8 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.12",
-    "random-useragent": "^0.5.0"
+    "random-useragent": "^0.5.0",
+    "express": "^4.18.2",
+    "linkedin-jobs-api": "latest"
   }
 }
